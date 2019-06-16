@@ -30,10 +30,10 @@ public class SetTest {
         assertThat(numbers.contains(3)).isTrue();
     }
 
-    @Test
+
     @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "3"})
-    void contains(String num) {
+    @ValueSource(ints = {1, 2, 3})
+    void contains(int num) {
         assertThat(numbers.contains(num)).isTrue();
     }
 }

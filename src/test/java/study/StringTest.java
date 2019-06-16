@@ -4,8 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
 
@@ -17,7 +16,7 @@ public class StringTest {
     //@Test
     void split() {
         String[] result = "1,2".split(",");
-        //System.out.println(result[0]);
+        //System.out.println(result[0]); 옛날 main method 테스트 방식
         //System.out.println(result[1]);
         System.out.println("split====");
         assertThat(result[0]).isEqualTo("1");
@@ -25,12 +24,13 @@ public class StringTest {
         assertThat(result).containsExactly("1","2");
     }
 
-    //@Test
+    // 위처럼 Index 사용하지 않아도 contains로 확인 가능
+    @Test
     void split1() {
         System.out.println("split1====");
         String[] result = "1,2".split(",");
-        assertThat(result).containsExactly("1","2");
-        assertThat(result).contains("1","2");
+        assertThat(result).containsExactly("1","2"); // 1, 2의 순서도 보장
+        assertThat(result).contains("2","1"); // 순서는 없음
     }
 
     //@Test
@@ -64,6 +64,23 @@ public class StringTest {
                     result.charAt(3)
                 ).withMessage("String index out of range: 3");
 
+    }
+
+    @Test
+    void charAt() {
+        assertThatThrownBy(() -> {
+            String inputData = "abc";
+            inputData.charAt(inputData.length());
+        }).isInstanceOf(StringIndexOutOfBoundsException.class).hasMessage("[TEST] StringIndexOutOfBoundsException");
+    }
+
+    //
+    @Test
+    void charAtException() {
+        assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
+                .isThrownBy(() -> {
+                    "abc".charAt(4);
+                });
     }
 
     @AfterEach // 각 테스트가 독립적으로 실행되기 위해 초기화 작업을 매번 함
