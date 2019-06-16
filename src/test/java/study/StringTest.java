@@ -4,7 +4,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class StringTest {
 
@@ -17,6 +20,7 @@ public class StringTest {
     void split() {
         String[] result = "1,2".split(",");
         //System.out.println(result[0]); 옛날 main method 테스트 방식
+        //System.out.println(result[0]);
         //System.out.println(result[1]);
         System.out.println("split====");
         assertThat(result[0]).isEqualTo("1");
@@ -40,6 +44,7 @@ public class StringTest {
         assertThat(result).containsExactly("1");
 
     }
+
 
     @Test
     void substring1() {
@@ -83,8 +88,12 @@ public class StringTest {
                 });
     }
 
+    void split3() {
+        //String[] result = "(1,2)".substring()
+    }
+
     @AfterEach // 각 테스트가 독립적으로 실행되기 위해 초기화 작업을 매번 함
-    void tearDown() {
+    void teaarDown() {
         System.out.println("tear Down");
     }
 
